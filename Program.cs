@@ -11,9 +11,7 @@ namespace Heist
             string teamMemberName = "";
             Dictionary<string, Member> myTeam = new();
 
-            int bankDifficulty = 100;
-
-
+            // int bankDifficulty = 100;
 
             int teamSkill = 0;
 
@@ -61,33 +59,42 @@ namespace Heist
                 teamSkill += member.Value.SkillLevel;
             }
 
+            Console.WriteLine($"Bank Heist Difficulty Level? 1-100");
+            int bankDifficulty = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"How many times to run the simulation?");
+            int trialRuns = int.Parse(Console.ReadLine());
+
             Console.WriteLine($"Your team's skill: {teamSkill}");
 
-            Console.WriteLine("How many times would you like to run the simulation? ");
 
-            int trialRuns = int.Parse(Console.ReadLine());
+            int Successes = 0;
+            int Failures = 0;
 
             for (int i = 1; i < trialRuns + 1; i++)
             {
                 int luckValue = new Random().Next(-10, 10);
                 bankDifficulty = bankDifficulty + luckValue;
 
-                Console.WriteLine($"Trial Run: {i}");
+                // Console.WriteLine($"Trial Run: {i}");
                 Console.WriteLine($"Bank's difficulty: {bankDifficulty}");
-                Console.WriteLine($"Your luck level: {luckValue}");
+                // Console.WriteLine($"Your luck level: {luckValue}");
 
                 if (teamSkill > bankDifficulty)
                 {
                     Console.WriteLine("Success! You're ready to rob the bank.");
+                    Successes++;
                 }
                 else
                 {
                     Console.WriteLine("Your heist plans have been foiled. Better luck next time.");
+                    Failures++;
                 }
 
             }
 
-
+            Console.WriteLine($"Success: {Successes}");
+            Console.WriteLine($"Failures: {Failures}");
         }
     }
 }
