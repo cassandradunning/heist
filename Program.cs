@@ -12,8 +12,7 @@ namespace Heist
             Dictionary<string, Member> myTeam = new();
 
             int bankDifficulty = 100;
-            int luckValue = new Random().Next(-10, 10);
-            bankDifficulty = bankDifficulty + luckValue;
+
 
 
             int teamSkill = 0;
@@ -63,16 +62,31 @@ namespace Heist
             }
 
             Console.WriteLine($"Your team's skill: {teamSkill}");
-            Console.WriteLine($"Bank's difficulty: {bankDifficulty}");
 
-            if (teamSkill > bankDifficulty)
+            Console.WriteLine("How many times would you like to run the simulation? ");
+
+            int trialRuns = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i < trialRuns + 1; i++)
             {
-                Console.WriteLine("Success! You're ready to rob the bank.");
+                int luckValue = new Random().Next(-10, 10);
+                bankDifficulty = bankDifficulty + luckValue;
+
+                Console.WriteLine($"Trial Run: {i}");
+                Console.WriteLine($"Bank's difficulty: {bankDifficulty}");
+                Console.WriteLine($"Your luck level: {luckValue}");
+
+                if (teamSkill > bankDifficulty)
+                {
+                    Console.WriteLine("Success! You're ready to rob the bank.");
+                }
+                else
+                {
+                    Console.WriteLine("Your heist plans have been foiled. Better luck next time.");
+                }
+
             }
-            else
-            {
-                Console.WriteLine("Your heist plans have been foiled. Better luck next time.");
-            }
+
 
         }
     }
